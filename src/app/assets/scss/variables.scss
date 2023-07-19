@@ -1,0 +1,107 @@
+/**
+ * UI Colors
+ */
+$color-info: #4FC0D0;
+$color-error: #F24C3D;
+$color-success: #03C988;
+$color-primary: #525FE1;
+$color-warning: #FFA41B;
+$color-secondary: #F86F03;
+
+/**
+ * Media query screens
+ */
+$screen-xs: 424;
+$screen-sm: 575;
+$screen-md: 767;
+$screen-lg: 1199;
+$screen-xl: 1439;
+
+/**
+ * Animations transitions speed
+ */
+$animate-swift: .1s;
+$animate-fast: .2s;
+$animate-moderate: .25s;
+$animate-slow: .5s;
+$animate-lazy: 1s;
+
+/**
+ * animation timing types
+ */
+$timing-ease: ease;
+$timing-linear: linear;
+$timing-ease-in: ease-in;
+$timing-ease-out: ease-out;
+$timing-step-end: step-end;
+$timing-step-start: step-start;
+$timing-ease-in-out: ease-in-out;
+
+/**
+ * UI elements sizes
+ */
+$size-tiny: 10px;
+$size-small: 12px;
+$size-middle: 14px;
+$size-large: 18px;
+$size-big: 20px;
+$size-jumbo: 24px;
+
+/**
+ * UI Colors map
+ */
+$COLORS: (
+  info: $color-info,
+  error: $color-error,
+  primary: $color-primary,
+  warning: $color-warning,
+  success: $color-success,
+  secondary: $color-secondary,
+);
+
+/**
+ * Media query screens map
+ */
+$SCREENS: (
+  xs: $screen-xs,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl,
+);
+
+/**
+ * Animation speeds map
+ */
+$ANIMATE: (
+  swift: $animate-swift,
+  fast: $animate-fast,
+  moderate: $animate-moderate,
+  slow: $animate-slow,
+  lazy: $animate-lazy,
+);
+
+/**
+ * Animation timings map
+ */
+$TIMING: (
+  ease: $timing-ease,
+  linear: $timing-linear,
+  ease-in: $timing-ease-in,
+  ease-out: $timing-ease-out,
+  step-end: $timing-step-end,
+  step-start: $timing-step-start,
+  ease-in-out: $timing-ease-in-out,
+);
+
+/**
+ * UI elements sizes map
+ */
+$SIZES: (
+  big: $size-big,
+  tiny: $size-tiny,
+  small: $size-small,
+  large: $size-large,
+  jumbo: $size-jumbo,
+  middle: $size-middle,
+);

@@ -1,0 +1,136 @@
+@import "variables";
+@import "functions";
+
+@mixin screen($screen) {
+  @if (map-has-key($SCREENS, $screen)) {
+    @media screen and (min-width: map-get($SCREENS, $screen)) {
+      @content;
+    }
+  }
+}
+
+@mixin hoverable {
+  @media (any-hover: hover) {
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin adaptive-color($color, $options: ()) {
+  $defaultOptions: (
+    factory: 75,
+    property: color,
+    dark-color: black,
+    light-color: white,
+  );
+
+  $options: map-merge($defaultOptions, $options);
+
+  $value: map-get($options, dark-color);
+  @if (lightness($color) < map-get($options, factory)) {
+    $value: map-get($options, light-color);
+  }
+
+  #{map-get($options, property)}: $value;
+}
+
+@mixin highlight($options: ()) {
+
+  $defaultOptions: (
+    hover-factory: 5%,
+    active-factory: 10%,
+    mutation-hue: darken,
+  );
+
+  $options: map-merge($defaultOptions, $options);
+
+  $mutation-hue: map-get($options, mutation-hue);
+  $hover-factory: map-get($options, hover-factory);
+  $active-factory: map-get($options, active-factory);
+
+  @each $name, $color in $COLORS {
+    &.#{$name} {
+      color: $color;
+
+      @if ($hover-factory) {
+        @include hoverable {
+          color: mutate-color($color, $hover-factory, $mutation-hue);
+        }
+      }
+
+      @if ($active-factory) {
+        &:active {
+          color: mutate-color($color, $active-factory, $mutation-hue);
+        }
+      }
+
+      &.filled {
+        background-color: $color;
+
+        @include adaptive-color($color);
+
+        @if ($hover-factory) {
+          @include hoverable {
+            $hue-color: mutate-color($color, $hover-factory, $mutation-hue);
+
+            background-color: $hue-color;
+
+            @include adaptive-color($hue-color);
+          }
+        }
+
+        @if ($active-factory) {
+          $hue-color: mutate-color($color, $hover-factory, $mutation-hue);
+
+          &:active {
+            background-color: $hue-color;
+
+            @include adaptive-color($hue-color);
+          }
+        }
+      }
+
+      &.outlined {
+        border-color: $color;
+
+        @if ($hover-factory) {
+          @include hoverable {
+            border-color: mutate-color($color, $hover-factory, $mutation-hue);
+          }
+        }
+
+        @if ($active-factory) {
+          &:active {
+            border-color: mutate-color($color, $active-factory, $mutation-hue);
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@mixin animation {
+  @each $name, $value in $ANIMATE {
+    &.#{$name} {
+      transition-duration: $value;
+    }
+  }
+}
+
+@mixin timing {
+  @each $name, $value in $TIMING {
+    &.#{$name} {
+      transition-timing-function: $value;
+    }
+  }
+}
+
+@mixin sizes {
+  @each $name, $value in $SIZES {
+    &.#{$name} {
+      font-size: $value;
+    }
+  }
+}

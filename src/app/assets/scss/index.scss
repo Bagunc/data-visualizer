@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+@import "mixins";
+
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+
+  line-height: 1;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-family: Montserrat, sans-serif;
+}
+
+.outlined {
+  border: 1px solid;
+}
+
+* {
+  @include sizes;
+  @include timing;
+  @include animation;
+  @include highlight;
+}

@@ -1,0 +1,22 @@
+@function is-full-darken($color) {
+  @return lightness($color) == 0;
+}
+
+@function is-full-lighten($color) {
+  @return lightness($color) == 100;
+}
+
+@function mutate-color($color, $factory, $default-mutator: darken) {
+  $darken: darken($color, $factory);
+  $lighten: lighten($color, $factory);
+
+  $mutated: $lighten;
+  @if (
+    ($default-mutator == darken and is-full-darken($mutated)) or
+    is-full-lighten($mutated) == false
+  ) {
+    $mutated: $darken;
+  }
+
+  @return $mutated
+}
